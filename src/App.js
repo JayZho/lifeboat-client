@@ -43,7 +43,7 @@ const CameraController = () => {
 };
 
 function App() {
-  const soc = io("http://localhost:3000");
+  const soc = io("https://lifeboat-server-8gvcn1ygb73792bf-1302413344.tcloudbaseapp.com/");
   console.log("running App")
   return (
     <Canvas>

@@ -1,12 +1,12 @@
 import * as THREE from "three";
 import React, { useRef, useState, useMemo, useEffect } from "react";
-import { extend, useFrame, useLoader } from "@react-three/fiber";
+import { useFrame } from "react-three-fiber";
 import { PlaneBufferGeometry } from "three";
 
 const uniforms = {
     uTime: { value: 0 },
-    bigElevation: { value: 0.4 },
-    bigFrequency: { value: new THREE.Vector2(0.7, 0.9) },
+    bigElevation: { value: 0.9 },
+    bigFrequency: { value: new THREE.Vector2(0.2, 0.3) },
     bigSpeed: { value: 0.5 },
 }
 
@@ -121,7 +121,7 @@ const shaderModifier = (shader) => {
             
             for(float i = 1.0; i <= 3.0; i++)
             {
-                transformed.z = calcElevation(position) - abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.15)) * 1.1 / i);
+                transformed.z = calcElevation(position) - abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.15)) * 2.1 / i);
             }
         `,
     );

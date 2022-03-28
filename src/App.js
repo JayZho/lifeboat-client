@@ -15,7 +15,7 @@ import { Volcano } from './3DObjects/Volcano';
 import { Sky } from './3DObjects/Sky';
 import { Clouds } from './3DObjects/Clouds';
 
-const soc = io.connect("https://lifeboat-server-8gvcn1ygb73792bf-1302413344.ap-shanghai.app.tcloudbase.com/");
+const soc = io.connect("http://localhost:3001");
 
 const CameraController = () => {
   const { camera, gl, scene } = useThree();

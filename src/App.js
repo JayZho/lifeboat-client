@@ -6,7 +6,7 @@ import { CreatePage } from './pages/CreatePage';
 
 import { io } from "socket.io-client";
 
-import { Canvas, useThree } from 'react-three-fiber';
+import { Canvas, useThree } from "@react-three/fiber";
 import { Box, Ocean, OceanBed } from './3DObjects/Ocean';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";

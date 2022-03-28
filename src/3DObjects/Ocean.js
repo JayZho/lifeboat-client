@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import React, { useRef, useState, useMemo, useEffect } from "react";
-import { useFrame } from "react-three-fiber";
+import { useFrame } from "@react-three/fiber";
 import { PlaneBufferGeometry } from "three";
 
 const uniforms = {

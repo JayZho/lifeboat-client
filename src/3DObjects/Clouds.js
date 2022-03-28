@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from "three";
-import { useFrame } from "react-three-fiber";
+import { useFrame } from "@react-three/fiber";
 
 function Model({ ...props }) {
     const group = useRef()

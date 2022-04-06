@@ -121,7 +121,7 @@ const shaderModifier = (shader) => {
             
             for(float i = 1.0; i <= 3.0; i++)
             {
-                transformed.z = calcElevation(position) - abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.15)) * 2.1 / i);
+                transformed.z = calcElevation(position) - abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.35)) * 2.1 / i);
             }
         `,
     );
@@ -166,12 +166,12 @@ export function Ocean(props) {
                 args={[256, 128, 144, 108]}
             />
             <meshPhongMaterial
-                color={new THREE.Color(0x00081b)}
+                color={new THREE.Color(0x0048ab)}
                 onBeforeCompile={shaderModifier}
                 transparent={true}
-                opacity={0.8}
+                opacity={0.9}
                 flatShading={true}
-                shininess={80}
+                shininess={20}
                 
             />
         </mesh>

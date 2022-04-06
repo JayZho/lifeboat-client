@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Suspense, useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { IntroPage } from './IntroPage';
 import { JoinPage } from './pages/JoinPage';
 import { CreatePage } from './pages/CreatePage';
@@ -42,16 +42,21 @@ const CameraController = () => {
 };
 
 function App() {
+  const [light, setlight] = useState(0.7);
+
   useEffect(() => {
-    const soc = io.connect("http://lifeboat-server-8gvcn1ygb73792bf-1302413344.ap-shanghai.app.tcloudbase.com");
-    console.log("success");
+    const soc = io.connect("https://lifeboat-server-8gvcn1ygb73792bf-1302413344.ap-shanghai.app.tcloudbase.com");
+    soc.on("message", (msg) => {
+      setlight(0);
+      console.log(msg);
+    });
   }, []);
 
   return (
     <Canvas>
       <CameraController />
       <ambientLight
-        intensity={0.3}
+        intensity={light}
       // color={0xbb2244}
       />
       <directionalLight

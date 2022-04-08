@@ -45,7 +45,7 @@ function App() {
   const [light, setlight] = useState(0.7);
 
   useEffect(() => {
-    const soc = io.connect("https://lifeboat-server-8gvcn1ygb73792bf-1302413344.ap-shanghai.app.tcloudbase.com");
+    const soc = io.connect("https://lifeboat-server-1760553-1302413344.ap-shanghai.run.tcloudbase.com");
     soc.on("message", (msg) => {
       setlight(0);
       console.log(msg);

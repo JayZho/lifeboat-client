@@ -10,15 +10,11 @@ export default function Model({ ...props }) {
   const { nodes, materials } = useGLTF('/sky.glb')
   return (
     <group ref={group} {...props} dispose={null}>
-      <mesh geometry={nodes.Sphere001.geometry} material={nodes.Sphere001.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere002.geometry} material={nodes.Sphere002.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere003.geometry} material={nodes.Sphere003.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere004.geometry} material={nodes.Sphere004.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere005.geometry} material={nodes.Sphere005.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere006.geometry} material={nodes.Sphere006.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere007.geometry} material={nodes.Sphere007.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere008.geometry} material={nodes.Sphere008.material} scale={[1, 0.33, 1]} />
-      <mesh geometry={nodes.Sphere009.geometry} material={nodes.Sphere009.material} scale={[1, 0.33, 1]} />
+      <group scale={0}>
+        <group rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh geometry={nodes['GeoSphere001_10_-_Default_0'].geometry} material={materials['10_-_Default']} />
+        </group>
+      </group>
     </group>
   )
 }

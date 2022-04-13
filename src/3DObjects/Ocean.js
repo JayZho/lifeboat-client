@@ -5,8 +5,8 @@ import { PlaneBufferGeometry } from "three";
 
 const uniforms = {
     uTime: { value: 0 },
-    bigElevation: { value: 0.9 },
-    bigFrequency: { value: new THREE.Vector2(0.2, 0.3) },
+    bigElevation: { value: 1.4 },
+    bigFrequency: { value: new THREE.Vector2(0.06, 0.1) },
     bigSpeed: { value: 0.5 },
 }
 
@@ -118,32 +118,14 @@ const shaderModifier = (shader) => {
         "#include <begin_vertex>",
         `
             #include <begin_vertex>
-            
+            float elev = calcElevation(position);
             for(float i = 1.0; i <= 3.0; i++)
             {
-                transformed.z = calcElevation(position) - abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.35)) * 2.1 / i);
+                elev -= abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.45)) * 1.1 / i);
             }
+            transformed.z = elev;
         `,
     );
-    // shader.vertexShader = shader.vertexShader.replace(
-    //     '#include <beginnormal_vertex>',
-    //     `
-    //         #include <beginnormal_vertex>
-
-    //         vec3 currPos = vec3(position.x, position.y, calcElevation(position));
-    //         float increment = 5.0/16.0;
-
-    //         vec3 rightPos = vec3(position.x + increment, position.y, position.z);
-    //         vec3 bottomPos = vec3(position.x, position.y - increment, position.z);
-    //         vec3 elevatedRight = vec3(position.x + increment, position.y, calcElevation(rightPos));
-    //         vec3 elevatedBottom = vec3(position.x, position.y - increment, calcElevation(bottomPos));
-    //         vec3 edgeRight = elevatedRight - currPos;
-    //         vec3 edgeBottom = elevatedBottom - currPos;
-
-    //         vec3 crossProduct = cross(edgeBottom, edgeRight);
-    //         objectNormal = crossProduct;
-    //     `
-    // )
 }
 
 
@@ -163,35 +145,16 @@ export function Ocean(props) {
         >
 
             <planeBufferGeometry
-                args={[256, 128, 144, 108]}
+                args={[312, 156, 108, 144]}
             />
             <meshPhongMaterial
-                color={new THREE.Color(0x0048ab)}
+                color={new THREE.Color(0x00283b)}
                 onBeforeCompile={shaderModifier}
                 transparent={true}
-                opacity={0.9}
+                opacity={0.95}
                 flatShading={true}
                 shininess={20}
                 
-            />
-        </mesh>
-    )
-}
-
-export function OceanBed() {
-    return (
-        <mesh
-            // rotation-x={-Math.PI / 2}
-            position={[0, 3, -5]}
-        >
-            <planeBufferGeometry
-                args={[100, 40]}
-            />
-            <meshPhongMaterial
-                color={new THREE.Color(0x000000)}
-                flatShading={true}
-                shininess={0}
-                emmisive={0x7799aa}
             />
         </mesh>
     )

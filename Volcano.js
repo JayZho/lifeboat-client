@@ -10,8 +10,8 @@ export default function Model({ ...props }) {
   const { nodes, materials } = useGLTF('/volcano.glb')
   return (
     <group ref={group} {...props} dispose={null}>
-      <mesh geometry={nodes.Tree02.geometry} material={nodes.Tree02.material} position={[-0.87, 1.05, -0.91]} scale={[2.2, 2.7, 2.2]} />
-      <mesh geometry={nodes.Tree.geometry} material={nodes.Tree.material} position={[-0.58, 0.51, 2.7]} scale={[1.79, 2.19, 1.79]} />
+      <mesh geometry={nodes.Tree02.geometry} material={materials.Tree} position={[-0.87, 1.05, -0.91]} scale={[2.2, 2.7, 2.2]} />
+      <mesh geometry={nodes.Tree.geometry} material={materials.Tree} position={[-0.58, 0.51, 2.7]} scale={[1.79, 2.19, 1.79]} />
       <group position={[-0.59, -0.55, 0.44]} scale={[3.21, 3.9, 3.21]}>
         <mesh geometry={nodes.Volcano_1.geometry} material={materials.Volcano} />
         <mesh geometry={nodes.Volcano_2.geometry} material={materials.Lava} />

@@ -11,9 +11,10 @@ import { Box, Ocean, OceanBed } from './3DObjects/Ocean';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
 import { Fog, FogExp2 } from 'three';
-import { Volcano } from './3DObjects/Volcano';
+import { Mountain } from './3DObjects/Mountain';
 import { Sky } from './3DObjects/Sky';
 import { Clouds } from './3DObjects/Clouds';
+import { Stars } from './3DObjects/Stars';
 
 const CameraController = () => {
   const { camera, gl, scene } = useThree();
@@ -26,12 +27,12 @@ const CameraController = () => {
       camera.updateProjectionMatrix();
       // controls.minDistance = 54;
       // controls.maxDistance = 64;
-      // // scene.fog = new THREE.Fog(0xeeeeee, -3, 20);
+      // scene.fog = new THREE.Fog(0xeeeeee, 1, 120);
       // controls.minAzimuthAngle = -Math.PI * 0.15;
       // controls.maxAzimuthAngle = Math.PI * 0.15;
       // controls.minPolarAngle = Math.PI * 0.42;
       // controls.maxPolarAngle = Math.PI * 0.49;
-      controls.enablePan = false;
+      // controls.enablePan = false;
       return () => {
         controls.dispose();
       };
@@ -54,7 +55,7 @@ function App() {
 
   return (
     <Canvas>
-      <CameraController />
+      {/* <CameraController />
       <ambientLight
         intensity={light}
       // color={0xbb2244}
@@ -65,10 +66,29 @@ function App() {
         castShadow={true}
       />
       <Ocean />
-      <Volcano />
+      <IceMountain />
       <Box position={[0, 0, 58]} />
-      <Sky />
+      <Clouds /> */}
+      <ambientLight
+        intensity={0.5}
+      // color={0xbb2244}
+      />
+      <CameraController />
+      <directionalLight
+        intensity={0.4}
+        position={[-1, 1, -0.7]}
+        castShadow={true}
+      />
+      <pointLight
+        intensity={0.3}
+        distance={200}
+        color={0xffffff}
+      />
+      <Mountain />
       <Clouds />
+      <Stars />
+      <Sky />
+      <Ocean />
     </Canvas>
 
   );

@@ -41,7 +41,7 @@ export function Stars() {
         console.log(checker_tex);
 
         const mat = new THREE.PointsMaterial({ color: 0xffffff });
-        mat.size = 5;
+        mat.size = 3;
         mat.sizeAttenuation = true;
         mat.alphaMap = checker_tex;
         mat.alphaTest = 0.02;

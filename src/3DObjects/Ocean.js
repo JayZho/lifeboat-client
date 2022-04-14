@@ -5,9 +5,9 @@ import { PlaneBufferGeometry } from "three";
 
 const uniforms = {
     uTime: { value: 0 },
-    bigElevation: { value: 1.4 },
-    bigFrequency: { value: new THREE.Vector2(0.06, 0.1) },
-    bigSpeed: { value: 0.5 },
+    bigElevation: { value: 1.1 },
+    bigFrequency: { value: new THREE.Vector2(0.16, 0.1) },
+    bigSpeed: { value: 1.4 },
 }
 
 const shaderModifier = (shader) => {
@@ -121,20 +121,36 @@ const shaderModifier = (shader) => {
             float elev = calcElevation(position);
             for(float i = 1.0; i <= 3.0; i++)
             {
-                elev -= abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.45)) * 1.1 / i);
+                elev -= abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.4)) * 2.1 / i);
             }
             transformed.z = elev;
         `,
     );
 }
 
+const cubeTextureLoader = new THREE.CubeTextureLoader()
+
+const environmentMapTexture = cubeTextureLoader.load([
+    '/left.png',
+    '/left.png',
+    '/left.png',
+    '/left.png',
+    '/left.png',
+    '/left.png'
+])
+
 
 export function Ocean(props) {
     const oceanRef = useRef();
+    const matRef = useRef();
     // Subscribe this component to the render-loop, rotate the mesh every frame
     useFrame(({ clock }) => {
         uniforms.uTime.value = clock.getElapsedTime();
+        // matRef.current.emissiveIntensity = Math.sin(clock.getElapsedTime());
     });
+
+    const tex_loader = new THREE.TextureLoader();
+    const checker_tex = tex_loader.load("/oceanmap.png");
     // Return the view, these are regular Threejs elements expressed in JSX
     return (
         <mesh
@@ -145,16 +161,22 @@ export function Ocean(props) {
         >
 
             <planeBufferGeometry
-                args={[312, 156, 108, 144]}
+                args={[312, 156, 64, 80]}
             />
             <meshPhongMaterial
-                color={new THREE.Color(0x00283b)}
+                ref={matRef}
+                color={new THREE.Color(0x00aaeb)}
                 onBeforeCompile={shaderModifier}
                 transparent={true}
-                opacity={0.95}
+                opacity={0.7}
                 flatShading={true}
-                shininess={20}
-                
+                shininess={5}
+                // envMap={environmentMapTexture}
+                // reflectivity={1}
+                emissive={0x22d8ee}
+                emissiveMap={checker_tex}
+                emissiveIntensity={0.6}
+
             />
         </mesh>
     )

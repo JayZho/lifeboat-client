@@ -9,7 +9,7 @@ function Model({ ...props }) {
     const { nodes } = useGLTF('/cloudClose.glb')
 
     const cloudMat = new THREE.MeshPhongMaterial({
-        color: 0x222222,
+        color: 0x444444,
     });
 
     useFrame((_) => {

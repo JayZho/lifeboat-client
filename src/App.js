@@ -15,6 +15,8 @@ import { Mountain } from './3DObjects/Mountain';
 import { Sky } from './3DObjects/Sky';
 import { Clouds } from './3DObjects/Clouds';
 import { Stars } from './3DObjects/Stars';
+import { Shark } from './3DObjects/Shark';
+import { Boat } from './3DObjects/Boat';
 
 const CameraController = () => {
   const { camera, gl, scene } = useThree();
@@ -55,40 +57,42 @@ function App() {
 
   return (
     <Canvas>
-      {/* <CameraController />
       <ambientLight
-        intensity={light}
-      // color={0xbb2244}
-      />
-      <directionalLight
-        intensity={0.7}
-        position={[-1, 1, -0.7]}
-        castShadow={true}
-      />
-      <Ocean />
-      <IceMountain />
-      <Box position={[0, 0, 58]} />
-      <Clouds /> */}
-      <ambientLight
-        intensity={0.5}
+        intensity={0.1}
       // color={0xbb2244}
       />
       <CameraController />
-      <directionalLight
-        intensity={0.4}
-        position={[-1, 1, -0.7]}
+      {/* <directionalLight
+        intensity={0.1}
+        position={[0, 1, -1]}
         castShadow={true}
+      /> */}
+      <rectAreaLight
+        lookAt={[0, 20, 0]}
+        intensity={0.4}
+        color={0x22d8ee}
+        width={100}
+        height={100}
       />
       <pointLight
-        intensity={0.3}
-        distance={200}
-        color={0xffffff}
+        intensity={0.5}
+        distance={40}
+        color={0xeeeeaa}
+        position={[-7, 6, 55]}
       />
+      <Box position={[-7, 6.5, 55]} />
+      {/* <directionalLight
+        intensity={0.5}
+        position={[-2, 2, 55]}
+        castShadow={true}
+      /> */}
       <Mountain />
-      <Clouds />
+      {/* <Clouds /> */}
       <Stars />
       <Sky />
+      <Shark />
       <Ocean />
+      <Boat />
     </Canvas>
 
   );

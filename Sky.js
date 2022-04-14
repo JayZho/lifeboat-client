@@ -10,11 +10,7 @@ export default function Model({ ...props }) {
   const { nodes, materials } = useGLTF('/sky.glb')
   return (
     <group ref={group} {...props} dispose={null}>
-      <group scale={0}>
-        <group rotation={[-Math.PI / 2, 0, 0]}>
-          <mesh geometry={nodes['GeoSphere001_10_-_Default_0'].geometry} material={materials['10_-_Default']} />
-        </group>
-      </group>
+      <mesh geometry={nodes.Sphere.geometry} material={nodes.Sphere.material} />
     </group>
   )
 }

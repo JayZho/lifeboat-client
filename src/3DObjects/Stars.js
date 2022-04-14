@@ -38,10 +38,8 @@ export function Stars() {
     const star_mat = useMemo(() => {
         const tex_loader = new THREE.TextureLoader();
         const checker_tex = tex_loader.load("/stars_alpha.png");
-        console.log(checker_tex);
-
         const mat = new THREE.PointsMaterial({ color: 0xffffff });
-        mat.size = 3;
+        mat.size = 4;
         mat.sizeAttenuation = true;
         mat.alphaMap = checker_tex;
         mat.alphaTest = 0.02;

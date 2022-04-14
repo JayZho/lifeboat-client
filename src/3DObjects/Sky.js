@@ -49,24 +49,29 @@ const matt = <meshPhongMaterial
 function Model({ ...props }) {
     const group = useRef()
     const { nodes, materials } = useGLTF('/sky.glb')
+
+
+    const tex_loader = new THREE.TextureLoader();
+    const checker_tex = tex_loader.load("/darkblue.png");
     return (
         <group ref={group} {...props} dispose={null}>
-            <group rotation={[-Math.PI / 2, 0, 0]}>
-                <mesh geometry={nodes['GeoSphere001_10_-_Default_0'].geometry} material={materials['10_-_Default']} />
-            </group>
+            <mesh geometry={nodes.Sphere.geometry} material={new THREE.MeshPhongMaterial({ map: checker_tex })} />
         </group>
     )
 }
 
-const geo = new THREE.IcosahedronGeometry(156, 16);
-const mat = new THREE.MeshPhongMaterial({color: 0x04020d, side: THREE.BackSide});
+const tex_loader = new THREE.TextureLoader();
+const checker_tex = tex_loader.load("/darkblue.png");
+
+const geo = new THREE.IcosahedronGeometry(156, 4);
+const mat = new THREE.MeshPhongMaterial({ map: checker_tex, side: THREE.BackSide });
 
 export function Sky(props) {
     return (
         // <Suspense fallback={null}>
         //     <Model
-        //         position={[0, 0, 70]}
-        //         scale={0.036}
+        //         position={[0, 0, 0]}
+        //         scale={100}
         //     />
         // </Suspense>
         <mesh
@@ -75,14 +80,6 @@ export function Sky(props) {
             geometry={geo}
             material={mat}
         >
-            {/* <planeBufferGeometry
-                args={[10, 10]}
-            />
-            <rawShaderMaterial
-                attach="material"
-                {...shaderInfo}
-            /> */}
-            
         </mesh>
     )
 }

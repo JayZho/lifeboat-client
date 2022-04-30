@@ -32,7 +32,7 @@ export function Boat(props) {
             <Model
                 rotation={[0, Math.PI / 2, 0]}
                 scale={3}
-                position={[0, 0.5, 55]}
+                position={[0, 0.5, 30]}
             />
         </Suspense>
     )

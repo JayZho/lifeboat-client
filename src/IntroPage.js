@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./IntroPage.css";
 
 export function IntroPage(props) {

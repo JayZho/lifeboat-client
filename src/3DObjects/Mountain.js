@@ -18,7 +18,7 @@ export function Mountain(props) {
             <Model
                 rotation={[- Math.PI / 2, 0, -Math.PI * 0.4]}
                 scale={0.028}
-                position={[0, -5.4, -56]}
+                position={[0, -5, -56]}
             />
         </Suspense>
     )

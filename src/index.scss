@@ -1,0 +1,63 @@
+:root {
+  --toastify-color-dark: #373737 !important;
+  --toastify-font-family: "Papyrus" !important;
+}
+
+html {
+  font-size: 10px; // change it to adjust the whole screen size
+}
+
+#testback {
+  width: 100vw;
+  height: 100vh;
+  background-color: aqua;
+  position: fixed;
+}
+
+body {
+  margin: 0;
+  font-family: "Papyrus";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  .Toastify__toast-body {
+    font-size: 2rem;
+    div:nth-child(2) {
+      padding-top: 0.6rem;
+    }
+  }
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+button {
+  border: none;
+  font-family: "Papyrus";
+  font-weight: 900;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.5s;
+  background-color: rgb(57, 104, 247);
+  &:disabled {
+    background-color: grey !important;
+    cursor: auto !important;
+  }
+  &.red {
+    background-color: rgb(214, 0, 75);
+  }
+  &.white {
+    background-color: white;
+  }
+}

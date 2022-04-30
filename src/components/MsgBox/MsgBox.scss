@@ -1,0 +1,34 @@
+#msg-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    width: 800px;
+    height: 450px;
+    background-color: black;
+    opacity: 0.9;
+    border-radius: 20px;
+    z-index: 1;
+    animation: msgBoxFadein 0.6s linear;
+    color: white;
+
+    #msg-box-btn {
+        position: absolute;
+        bottom: 2rem;
+        border: none;
+        background: none;
+        color: white;
+        font-family: "Papyrus";
+        font-size: 2.6rem;
+        cursor: pointer;
+    }
+}
+
+
+@keyframes msgBoxFadein {
+    from {
+      opacity: 0;
+    } to {
+      opacity: 0.85;
+    }
+  }

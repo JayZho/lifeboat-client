@@ -1,10 +1,8 @@
-import { PointMaterial, Points } from "@react-three/drei";
 import { useMemo } from "react";
 import * as THREE from "three";
-import { RawShaderMaterial } from "three";
 
 const generateStarsGeo = function (amount, height_angle) {
-    const radius = 152;
+    const radius = 140;
 
     const random_geo = new THREE.BufferGeometry();
     const positions = new Float32Array(amount * 3);
@@ -29,7 +27,6 @@ const generateStarsGeo = function (amount, height_angle) {
     return random_geo;
 }
 
-
 export function Stars() {
     const star_geo = useMemo(() => {
         return generateStarsGeo(100, Math.PI / 3);
@@ -51,6 +48,6 @@ export function Stars() {
     }, []);
 
     return (
-        <points geometry={star_geo} material={star_mat} />
+        <points geometry={star_geo} material={star_mat} position={[0, 0, 60]}/>
     )
 }

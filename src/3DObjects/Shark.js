@@ -1,21 +1,31 @@
-import React, { useRef, useEffect, Suspense } from 'react'
+import React, { useRef, useEffect, Suspense, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+
 function Model({ ...props }) {
-
-
     const group = useRef()
-    const { scene, nodes, materials, animations } = useGLTF('/shark.glb')
+    const { scene, nodes, materials, animations } = useGLTF('/shark.glb');
+    
+    const [mixer, setMixer] = useState(null);
 
-    let mixer = new THREE.AnimationMixer(scene);
-    animations.forEach((clip) => {
-        const action = mixer.clipAction(clip);
-        action.play();
-    });
-    useFrame((state, delta) => {
-        mixer.update(delta / 4);
+    useEffect(() => {
+        if (scene && animations) {
+            const m = new THREE.AnimationMixer(scene);
+            setMixer(m);
+            animations.forEach((clip) => {
+                const action = m.clipAction(clip);
+                action.play();
+            });
+        }
+    }, [scene, animations]);
+
+    useFrame((delta) => {
+        if (mixer) {
+            console.log(mixer)
+            mixer.update(delta);
+        }
         group.current.rotation.y -= 0.002;
     });
 

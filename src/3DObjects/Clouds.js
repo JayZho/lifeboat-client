@@ -9,7 +9,7 @@ function Model({ ...props }) {
     const { nodes } = useGLTF('/cloudClose.glb')
 
     const cloudMat = new THREE.MeshPhongMaterial({
-        color: 0x444444,
+        color: 0xaaaaaa,
     });
 
     useFrame((_) => {
@@ -39,7 +39,7 @@ export function Clouds(props) {
         <Suspense fallback={null}>
             <Model
                 position={[0, 38, 25]}
-                scale={10}
+                scale={5.5}
             />
         </Suspense>
     )

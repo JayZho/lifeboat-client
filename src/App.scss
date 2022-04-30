@@ -1,0 +1,19 @@
+h1 {
+  position: fixed;
+  top: 0;
+  font-weight: 900;
+  color: wheat;
+  font-size: 100px;
+  font-family: "Papyrus";
+  left: 500px;
+}
+
+.fuck {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+  z-index: -99;
+}

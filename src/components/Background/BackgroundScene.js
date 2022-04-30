@@ -50,22 +50,22 @@ function BackgroundScene() {
           intensity={0.8}
         />
         <CameraController />
-        {/* <rectAreaLight
-        lookAt={[0, 20, 0]}
-        intensity={0.4}
-        color={0x22d8ee}
-        width={60}
-        height={40}
-      />
-      
-      <directionalLight
-        intensity={0.1}
-        position={[-2, 2, 55]}
-        castShadow={true}
-      />
-      <Mountain />
-      <Stars />
-      <Sky /> */}
+        <rectAreaLight
+          lookAt={[0, 20, 0]}
+          intensity={0.4}
+          color={0x22d8ee}
+          width={60}
+          height={40}
+        />
+
+        <directionalLight
+          intensity={0.1}
+          position={[-2, 2, 55]}
+          castShadow={true}
+        />
+        <Mountain />
+        <Stars />
+        <Sky />
         {/* <Shark /> */}
         <Ocean />
         <Boat />

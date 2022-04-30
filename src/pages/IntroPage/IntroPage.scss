@@ -1,37 +1,37 @@
 #intro-buttons {
   position: fixed;
-  // bottom: 20%;
-  // display: flex;
-  // flex-direction: column;
-  // row-gap: 2rem;
+  bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
 
-  // button {
-  //   width: 15rem;
-  //   height: 5rem;
-  //   border-radius: 1.2rem;
-  //   font-weight: 900;
-  //   font-size: 1.8rem;
-    // &:first-child {
-    //   animation: fadeinFull 0.6s linear 1s backwards;
-    // }
-    // &:nth-child(2) {
-    //   animation: fadeinFull 0.6s linear 1.4s backwards;
-    // }
-  // }
+  button {
+    width: 15rem;
+    height: 5rem;
+    border-radius: 1.2rem;
+    font-weight: 900;
+    font-size: 1.8rem;
+    &:first-child {
+      animation: fadeinFull 0.6s linear 1s backwards;
+    }
+    &:nth-child(2) {
+      animation: fadeinFull 0.6s linear 1.4s backwards;
+    }
+  }
 }
 
-// #lifeboat-title {
-//   top: 10vh;
-//   position: fixed;
-//   font-size: 10rem;
-//   animation: fadeinFull 1.5s linear 0.3s backwards;
-// }
+#lifeboat-title {
+  top: 10vh;
+  position: fixed;
+  font-size: 10rem;
+  animation: fadeinFull 1.5s linear 0.3s backwards;
+}
 
-// @keyframes fadeinFull {
-//   from {
-//     opacity: 0;
-//   }
-//   to {
-//     opacity: 1;
-//   }
-// }
+@keyframes fadeinFull {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

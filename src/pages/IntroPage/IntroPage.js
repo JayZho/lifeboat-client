@@ -29,8 +29,8 @@ export function IntroPage(props) {
                 </div>
             </React.Fragment>
         ) : (
-            <Test />
-            // isCreateRoom ? <CreatePage closePage={() => setIntro(true)} /> : <JoinPage closePage={() => setIntro(true)} />
+            // <Test />
+            isCreateRoom ? <CreatePage closePage={() => setIntro(true)} /> : <JoinPage closePage={() => setIntro(true)} />
         )
     )
 }

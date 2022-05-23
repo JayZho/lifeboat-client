@@ -10,8 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Box } from './3DObjects/Ocean';
 import { GamePage } from './pages/GamePage/GamePage';
 import { Loader } from './components/Loader/Loader';
-export const socket = io("localhost:80");
-// export const socket = io.connect("https://lifeboat-host-1760747-1302413344.ap-shanghai.run.tcloudbase.com");
+// export const socket = io("localhost:80");
+export const socket = io.connect("https://lifeboat-host-1760747-1302413344.ap-shanghai.run.tcloudbase.com");
 
 
 function App() {

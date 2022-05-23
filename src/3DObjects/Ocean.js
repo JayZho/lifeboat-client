@@ -5,9 +5,9 @@ import { PlaneBufferGeometry } from "three";
 
 const uniforms = {
     uTime: { value: 0 },
-    bigElevation: { value: 1.1 },
-    bigFrequency: { value: new THREE.Vector2(0.16, 0.1) },
-    bigSpeed: { value: 1.4 },
+    bigElevation: { value: 1 },
+    bigFrequency: { value: new THREE.Vector2(0.2, 0.1) },
+    bigSpeed: { value: 1 },
 }
 
 const shaderModifier = (shader) => {
@@ -119,11 +119,7 @@ const shaderModifier = (shader) => {
         `
             #include <begin_vertex>
             float elev = calcElevation(position);
-            for(float i = 1.0; i <= 3.0; i++)
-            {
-                elev -= abs(cnoise(vec3(position.xy * 3.0 * i, uTime * 0.4)) * 2.1 / i);
-            }
-            transformed.z = elev;
+            transformed.z = elev + abs(cnoise(vec3(position.xy * 1.0, uTime * 0.2)) * 2.0);
         `,
     );
 }
@@ -142,41 +138,41 @@ const environmentMapTexture = cubeTextureLoader.load([
 
 export function Ocean(props) {
     const oceanRef = useRef();
-    const matRef = useRef();
+    const [checkTex, setCheckTex] = useState(null);
+    let tex_loader = null;
+
     // Subscribe this component to the render-loop, rotate the mesh every frame
     useFrame(({ clock }) => {
         uniforms.uTime.value = clock.getElapsedTime();
-        // matRef.current.emissiveIntensity = Math.sin(clock.getElapsedTime());
     });
 
-    const tex_loader = new THREE.TextureLoader();
-    const checker_tex = tex_loader.load("/oceanmap.png");
+    useEffect(async () => {
+        tex_loader = new THREE.TextureLoader();
+        const checker_tex = await tex_loader.load("/oceanmap.png");
+        setCheckTex(checker_tex);
+        props.onFinish();
+    }, []);
+
     // Return the view, these are regular Threejs elements expressed in JSX
     return (
         <mesh
             {...props}
             ref={oceanRef}
             rotation-x={-Math.PI / 2}
-            receiveShadow={true}
         >
-
-            <planeBufferGeometry
-                args={[312, 156, 64, 80]}
-            />
+            <planeBufferGeometry args={[512, 256, 48, 64]} />
             <meshPhongMaterial
-                ref={matRef}
                 color={new THREE.Color(0x00aaeb)}
                 onBeforeCompile={shaderModifier}
                 transparent={true}
-                opacity={0.7}
+                opacity={0.9}
                 flatShading={true}
-                shininess={5}
-                // envMap={environmentMapTexture}
-                // reflectivity={1}
-                emissive={0x22d8ee}
-                emissiveMap={checker_tex}
-                emissiveIntensity={0.6}
-
+            // shininess={80}
+            // envMap={environmentMapTexture}
+            // reflectivity={1}
+            // emissive={0x22d8ee}
+            // emissiveMap={checkTex}
+            // emissiveIntensity={0.6}
             />
         </mesh>
     )

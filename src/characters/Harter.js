@@ -4,15 +4,15 @@ import { useGLTF } from '@react-three/drei'
 
 function Model({ ...props }) {
     const group = useRef()
-    const { nodes, materials } = useGLTF('/captain.glb')
+    const { nodes, materials } = useGLTF('/harter.glb')
     return (
         <group ref={group} {...props} dispose={null}>
-            <mesh geometry={nodes.Line002001.geometry} material={materials['材质.005']} rotation={[Math.PI / 2, 0, 0]} />
+            <mesh geometry={nodes['????'].geometry} material={materials.材质} rotation={[Math.PI / 2, 0, 0]} />
         </group>
     )
 }
 
-export function Captain(props) {
+export function Harter(props) {
     return (
         <Suspense fallback={null}>
             <Model

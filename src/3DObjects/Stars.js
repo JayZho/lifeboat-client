@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import * as THREE from "three";
 
 const generateStarsGeo = function (amount, height_angle) {
@@ -27,7 +27,11 @@ const generateStarsGeo = function (amount, height_angle) {
     return random_geo;
 }
 
-export function Stars() {
+export function Stars(props) {
+    useEffect(() => {
+        props.onFinish();
+    }, []);
+
     const star_geo = useMemo(() => {
         return generateStarsGeo(100, Math.PI / 3);
     }, []);
@@ -48,6 +52,6 @@ export function Stars() {
     }, []);
 
     return (
-        <points geometry={star_geo} material={star_mat} position={[0, 0, 60]}/>
+        <points geometry={star_geo} material={star_mat} position={[0, 0, 60]} />
     )
 }

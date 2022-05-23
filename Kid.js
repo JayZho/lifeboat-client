@@ -7,12 +7,12 @@ import { useGLTF } from '@react-three/drei'
 
 export default function Model({ ...props }) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/boat.glb')
+  const { nodes, materials } = useGLTF('/kid.glb')
   return (
     <group ref={group} {...props} dispose={null}>
-      <mesh geometry={nodes.Boat.geometry} material={materials.boat_mat} position={[1.19, -1.3, -1.55]} rotation={[-Math.PI / 2, 0, 0]} scale={[1.01, 2.92, 1.59]} />
+      <mesh geometry={nodes.male_zbrush.geometry} material={materials.材质} rotation={[Math.PI / 2, 0, 0]} scale={0.06} />
     </group>
   )
 }
 
-useGLTF.preload('/boat.glb')
+useGLTF.preload('/kid.glb')

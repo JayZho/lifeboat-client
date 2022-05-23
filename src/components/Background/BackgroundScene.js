@@ -15,9 +15,18 @@ import { Stars } from '../../3DObjects/Stars';
 import { Shark } from '../../3DObjects/Shark';
 import { Boat } from '../../3DObjects/Boat';
 import { Captain } from '../../characters/Captain';
+import { Loader } from '../Loader/Loader';
+import { Huang } from '../../characters/Huang';
+import { Mate } from '../../characters/Mate';
+import { Stephen } from '../../characters/Stephen';
+import { Frenchy } from '../../characters/Frenchy';
+import { Lauren } from '../../characters/Lauren';
+import { Kid } from '../../characters/Kid';
+import { Harter } from '../../characters/Harter';
 
 const CameraController = () => {
   const { camera, gl, scene } = useThree();
+
   useEffect(
     () => {
       const controls = new OrbitControls(camera, gl.domElement);
@@ -42,38 +51,67 @@ const CameraController = () => {
   return null;
 };
 
-function BackgroundScene() {
+function BackgroundScene(props) {
+  const [sceneLoaded, setSceneLoaded] = useState(0);
+  const [sceneDisplayed, setSceneDisplayed] = useState(false);
+
+  const sceneReady = () => {
+    setSceneLoaded((old) => old + 1);
+  }
+
+  const enterScene = () => {
+    setSceneDisplayed(true);
+    props.onFinish();
+  }
+
+  useEffect(() => {
+    console.log(sceneLoaded)
+  })
+
   return (
     <div id='background'>
       <Canvas>
-        <ambientLight
-          intensity={0.8}
-        />
-        <CameraController />
-        <rectAreaLight
-          lookAt={[0, 20, 0]}
-          intensity={0.4}
-          color={0x22d8ee}
-          width={60}
-          height={40}
-        />
+        <Suspense fallback={<Box />}>
+          <CameraController />
 
-        <directionalLight
-          intensity={0.1}
-          position={[-2, 2, 55]}
-          castShadow={true}
-        />
-        <Mountain />
-        <Stars />
-        <Sky />
-        {/* <Shark /> */}
-        <Ocean />
-        <Boat />
+          <ambientLight
+            intensity={0.1}
+          />
+          <directionalLight
+            intensity={0.8}
+            position={[2, 2, 2]}
+          />
+
+          <Harter />
+          
+
+          <Mountain onFinish={sceneReady} />
+          <Stars onFinish={sceneReady} />
+          <Sky onFinish={sceneReady} />
+          <Ocean onFinish={sceneReady} />
+          <Boat onFinish={sceneReady} />
+          {/* <Shark /> */}
+        </Suspense>
 
       </Canvas>
+      {!sceneDisplayed && <div id='scene-cover'>
+        {sceneLoaded === 5 ?
+          <button className='enter' onClick={enterScene}>Enter</button> :
+          <Loader text="loading" />
+        }
+      </div>}
     </div>
 
   );
 }
 
 export default BackgroundScene;
+
+
+{/* <rectAreaLight
+          lookAt={[0, 20, 0]}
+          intensity={0.4}
+          color={0x22d8ee}
+          width={60}
+          height={40}
+          /> */}

@@ -16,7 +16,7 @@ export function IntroPage(props) {
             setGameSetup(players);
             // props.startGame();
         });
-    })
+    }, []);
 
     const createGame = () => {
         setIntro(false);
